@@ -8,7 +8,7 @@ public class Clickable : MonoBehaviour
 
     [SerializeField] private AnimationCurve _scaleCurve;
     [SerializeField] private float _scaleTime = 0.25f;
-    [SerializeField] private HitEffect _hitEffectPrefab;
+    [SerializeField] private CoinBox _coinBoxPrefab;
     [SerializeField] private Resources _resources;
 
     private int _coinsPerClick = 1;
@@ -16,9 +16,15 @@ public class Clickable : MonoBehaviour
     // Метод вызывается из Interaction при клике на объект
     public void Hit()
     {
-        HitEffect hitEffect = Instantiate(_hitEffectPrefab, transform.position, Quaternion.identity);
-        hitEffect.Init(_coinsPerClick);
-        _resources.CollectCoins(1, transform.position);
+        CoinBox coinBox = Instantiate(_coinBoxPrefab, transform.position + Vector3.up , Random.rotation);
+        coinBox.GetComponent<Rigidbody>().AddForce(
+            new Vector3(
+                Random.Range(1, 3) == 1 ? Random.Range(-100, -30) : Random.Range(30, 100),
+                100,
+                Random.Range(1, 3) == 1 ? Random.Range(-100, -30) : Random.Range(30, 100)
+            ));
+        coinBox.Resources = _resources;
+        Destroy(coinBox.gameObject, 3);
         StartCoroutine(HitAnimation());
     }
 
@@ -33,11 +39,4 @@ public class Clickable : MonoBehaviour
         }
         transform.localScale = Vector3.one;
     }
-
-    // Этот метод увеличивает количество монет, получаемой при клике
-    public void AddCoinsPerClick(int value)
-    {
-        _coinsPerClick += value;
-    }
-
 }

@@ -488,7 +488,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _scaleTime: 0.25
-  _hitEffectPrefab: {fileID: 5703519006022140795, guid: 6d47a5343814a934bb6476a04cfe6b79,
+  _coinBoxPrefab: {fileID: 4886658574334051127, guid: 4a4651b2fff12c1479a78edc996644d5,
     type: 3}
   _resources: {fileID: 1820760063}
 --- !u!65 &27802957

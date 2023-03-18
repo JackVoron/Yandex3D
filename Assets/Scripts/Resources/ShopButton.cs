@@ -8,7 +8,7 @@ public class ShopButton : MonoBehaviour
     [SerializeField] private Button _button;
     [SerializeField] private Resources _resources;
     [SerializeField] private int _price;
-    [SerializeField] private Clickable _ñlickable;
+    [SerializeField] private CoinBox _coinBox;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class ShopButton : MonoBehaviour
 
     public void Buy() {
         if (_resources.TryBuy(_price)) {
-            _ñlickable.AddCoinsPerClick(1);
+            _coinBox.AddCoinsPerClick(1);
         }
     }
 
